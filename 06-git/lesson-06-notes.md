@@ -132,3 +132,5 @@ FLOW: quay về main -> pull code mới nhất -> tạo nhánh từ main
 
 git checkout main
 git checkout: chuyển sang 1 nhánh khác
+
+Vd: tạo branch 1
