@@ -24,12 +24,8 @@ const rawRuns = [
 function locDanhSachChayLai(rawRuns) {
   // ------------------------------------------------------------------
   // YC1 + YC2: Dùng map để tạo normalizedRuns
-  // YC bắt buộc 1: Dùng object destructuring trong map
-  // YC bắt buộc 3: Không sửa rawRuns -> map trả về mảng mới
-  //
-  // Bài 05: .map() biến đổi mảng cũ thành mảng mới
-  // Bài 05: Object destructuring bóc tách từng field
-  // Bài 02: trim(), toUpperCase(), toLowerCase()
+  // Dùng object destructuring trong map
+  // Không sửa rawRuns -> map trả về mảng mới
   // ------------------------------------------------------------------
   const normalizedRuns = rawRuns.map((run) => {
     const { id, module, status, owner, priority, enabled } = run;
@@ -50,9 +46,6 @@ function locDanhSachChayLai(rawRuns) {
   // - enabled === true
   // - id không rỗng
   // - status là "fail" hoặc "flaky"
-  //
-  // Bài 05: .filter() lọc phần tử thỏa điều kiện
-  // Bài 03: toán tử && (AND), || (OR)
   // ------------------------------------------------------------------
   const rerunList = normalizedRuns.filter((run) => {
     return (
@@ -84,9 +77,6 @@ function locDanhSachChayLai(rawRuns) {
   // - id không rỗng
   // - priority === 1
   // - status === "fail"
-  //
-  // Bài 05: .find() trả về phần tử đầu tiên thỏa điều kiện
-  //         hoặc undefined nếu không tìm thấy
   // ------------------------------------------------------------------
   const found = normalizedRuns.find((run) => {
     return (
@@ -98,7 +88,6 @@ function locDanhSachChayLai(rawRuns) {
   });
 
   // Nếu find không tìm thấy -> trả về undefined -> gán null
-  // Bài 03: toán tử 3 ngôi
   const firstCriticalCase = found !== undefined ? found : null;
 
   // ------------------------------------------------------------------

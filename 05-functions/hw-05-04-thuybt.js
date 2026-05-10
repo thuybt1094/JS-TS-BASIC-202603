@@ -99,8 +99,7 @@ function phanTichKetQuaChay(results, options) {
   // ------------------------------------------------------------------
   for (let i = 0; i < results.length; i++) {
     // ----------------------------------------------------------------
-    // YC bắt buộc 1: Destructuring từng result object
-    // Bài 05: Object destructuring
+    // Destructuring từng result object
     // ----------------------------------------------------------------
     const { id, module, statuses, durations, owner } = results[i];
 
@@ -112,7 +111,7 @@ function phanTichKetQuaChay(results, options) {
     // ----------------------------------------------------------------
     const invalidReasons = [];
 
-    // Thiếu id (Bài 03: Truthy/Falsy -> chuỗi rỗng là falsy)
+    // Thiếu id
     if (!id) {
       invalidReasons.push("Thiếu id");
     }
@@ -125,12 +124,11 @@ function phanTichKetQuaChay(results, options) {
     }
 
     // Có duration âm
-    // Bài 05: .find() để tìm phần tử đầu tiên thỏa điều kiện
     let hasNegativeDuration = false;
     for (let j = 0; j < durations.length; j++) {
       if (durations[j] < 0) {
         hasNegativeDuration = true;
-        break; // Bài 04: break khi tìm thấy rồi
+        break; 
       }
     }
     if (hasNegativeDuration) {
@@ -145,7 +143,7 @@ function phanTichKetQuaChay(results, options) {
         owner,
         reasons: invalidReasons,
       });
-      continue; // Bài 04: continue để bỏ qua lần lặp hiện tại
+      continue; 
     }
 
     // ----------------------------------------------------------------
@@ -159,7 +157,6 @@ function phanTichKetQuaChay(results, options) {
     const retryCount = statuses.length - 1;
 
     // totalDuration: tổng thời gian tất cả các lần chạy
-    // Bài 04: dùng for để cộng dồn
     let totalDuration = 0;
     for (let j = 0; j < durations.length; j++) {
       totalDuration += durations[j];
@@ -167,8 +164,6 @@ function phanTichKetQuaChay(results, options) {
 
     // ----------------------------------------------------------------
     // YC2: isFlaky - có ít nhất 1 lần fail VÀ lần cuối là pass
-    // Bài 04: includes() kiểm tra phần tử trong mảng
-    // Bài 03: toán tử && (AND)
     // ----------------------------------------------------------------
     const isFlaky = statuses.includes("fail") && finalStatus === "pass";
 
@@ -191,9 +186,8 @@ function phanTichKetQuaChay(results, options) {
   }
 
   // ------------------------------------------------------------------
-  // YC5 + YC bắt buộc 2: Tạo summary từ mảng analyzed/invalid
+  // Tạo summary từ mảng analyzed/invalid
   // Không dùng biến global để cộng dồn -> tính từ mảng kết quả
-  // Bài 05: .filter() để đếm số lượng theo điều kiện
   // ------------------------------------------------------------------
   const summary = {
     total: results.length,
