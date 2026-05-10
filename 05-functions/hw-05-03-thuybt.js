@@ -111,9 +111,8 @@ function taoCauHinhCuoi(defaultConfig, envConfig, overrideConfig) {
   // YC1 + YC2: Dùng spread để merge config theo thứ tự
   // defaultConfig -> envConfig -> overrideConfig
   //
-  // Lưu ý (Bài 05 - Spread operator):
-  // - Spread chỉ sao chép nông (shallow copy)
-  // - Với property là object lồng (reporter), cần spread riêng
+  // - Spread chỉ sao chép nông
+  // - Với property là object lồng, cần spread riêng
   //   để tránh mất field từ lớp config trước
   // ------------------------------------------------------------------
 
@@ -140,7 +139,7 @@ function taoCauHinhCuoi(defaultConfig, envConfig, overrideConfig) {
 
 function kiemTraCauHinh(config) {
   // ------------------------------------------------------------------
-  // YC bắt buộc 2: Dùng object destructuring ít nhất 1 lần
+  // Dùng object destructuring ít nhất 1 lần
   // ------------------------------------------------------------------
   const { env, baseUrl, timeout, retries, headed, browsers, reporter } =
     config;
@@ -153,7 +152,6 @@ function kiemTraCauHinh(config) {
   // ------------------------------------------------------------------
 
   // baseUrl phải bắt đầu bằng "http://" hoặc "https://"
-  // Bài 02: slice() để check prefix
   if (
     baseUrl.slice(0, 7) !== "http://" &&
     baseUrl.slice(0, 8) !== "https://"
@@ -185,11 +183,9 @@ function kiemTraCauHinh(config) {
   // ------------------------------------------------------------------
 
   // map: trim + lowercase từng browser
-  // Bài 05: callback method .map()
   const cleanBrowsers = browsers.map((b) => b.trim().toLowerCase());
 
   // filter: lọc ra các browser bị trùng
-  // Bài 05: callback method .filter()
   // Logic: phần tử bị trùng khi indexOf (vị trí đầu tiên xuất hiện)
   //        khác với index hiện tại -> nghĩa là nó đã xuất hiện trước đó
   const duplicateBrowsers = cleanBrowsers.filter(
@@ -197,7 +193,6 @@ function kiemTraCauHinh(config) {
   );
 
   // find: lấy browser trùng đầu tiên (nếu có)
-  // Bài 05: callback method .find()
   const firstDuplicate = cleanBrowsers.find(
     (browser, index) => cleanBrowsers.indexOf(browser) !== index
   );
@@ -220,7 +215,6 @@ function kiemTraCauHinh(config) {
   }
 
   // baseUrl chứa "prod" nhưng env !== "production" -> warning
-  // Bài 02: includes() để kiểm tra chuỗi con
   if (baseUrl.includes("prod") && env !== "production") {
     warnings.push(
       `baseUrl chứa "prod" nhưng env = "${env}" (không phải "production")`
@@ -252,7 +246,7 @@ for (let i = 0; i < allCases.length; i++) {
   if (result.errors.length > 0) {
     console.log("ERRORS:");
     for (const err of result.errors) {
-      console.log(`  ❌ ${err}`);
+      console.log(`${err}`);
     }
   } else {
     console.log("ERRORS: (không có)");
@@ -261,7 +255,7 @@ for (let i = 0; i < allCases.length; i++) {
   if (result.warnings.length > 0) {
     console.log("WARNINGS:");
     for (const warn of result.warnings) {
-      console.log(`  ⚠️  ${warn}`);
+      console.log(`${warn}`);
     }
   } else {
     console.log("WARNINGS: (không có)");
