@@ -134,5 +134,3 @@ uat: main1
 **checkout**
 - git checkout main
 - git checkout: chuyển sang 1 nhánh khác
-
-- Vd: tạo branch 1
