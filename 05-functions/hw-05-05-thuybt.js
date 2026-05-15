@@ -129,7 +129,7 @@ if (result.missingOwnerList.length === 0) {
   console.log("(tất cả đều có owner)");
 } else {
   for (const run of result.missingOwnerList) {
-    console.log(`${run.id} | ${run.module} | ${run.status} | ⚠️ chưa có owner`);
+    console.log(`${run.id} | ${run.module} | ${run.status} | chưa có owner`);
   }
 }
 
