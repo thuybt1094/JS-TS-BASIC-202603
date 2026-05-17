@@ -146,3 +146,69 @@ class LoginSuite extends BaseSuite {
 let loginSuite = new LoginSuite("Login Test Suite");
 loginSuite.inTieuDe();
 loginSuite.inKetQua(loginCases);
+
+// check lại
+// class BaseSuite {
+
+//  tenSuite;
+
+// constructor(tenSuite) {
+
+// this.tenSuite = tenSuite;
+
+//  }
+
+// inTieuDe() {
+
+// console.log(`=== ${this.tenSuite} ===`);
+
+//  }
+
+// inKetQua(danhSachCase) {
+
+// for (const { ten, trangThai, thoiGian } of danhSachCase) {
+
+// console.log(
+
+// `TC: ${ten} | Status: ${trangThai} | Time: ${thoiGian}ms`
+
+//  );
+
+//  }
+
+//  }
+
+// }
+
+// class LoginSuite extends BaseSuite {
+
+// inTieuDe() {
+
+// super.inTieuDe();
+
+// console.log("Trang kiểm thử: /login");
+
+//  }
+
+// }
+
+// let loginCases = [
+
+//  { ten: "Đăng nhập đúng tài khoản", trangThai: "passed", thoiGian: 12000 },
+
+//  { ten: "Sai mật khẩu", trangThai: "failed", thoiGian: 5000 },
+
+//  { ten: "Email rỗng", trangThai: "passed", thoiGian: 8000 },
+
+// ];
+
+// const loginSuite = new LoginSuite("Login Test Suite");
+
+// loginSuite.inTieuDe();
+
+// loginSuite.inKetQua(loginCases);
+
+
+
+
+
