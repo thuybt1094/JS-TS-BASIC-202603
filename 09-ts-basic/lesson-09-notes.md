@@ -1,74 +1,144 @@
-Typescript là gì
-Typescript = javscript + hệ thống kiểu dữ liệu (type system)
+## TypeScript là gì?
 
-đặt món ăn
-JS- (ko có type):
-TS - (có type)
+TypeScript = JavaScript + hệ thống kiểu dữ liệu (type system).
 
-TS hoạt động như nào
-Typesciprt sẽ kiểm tra lỗi ở thời điểm như sau
-Bước 1: Viết code (IDE - vscode)
-TS language server -> chạy ngầm trong IDE
--> gạch đỏ ngay khi mình gõ kiểu sai
--> gợi ý code
-ĐÂY CHƯaphari là lúc biên dịch -> chỉ là bước IDE kiểm tra
+Ví dụ: đặt món ăn
 
-Bươc 2; là bước biên dịch (chạy lệnh tsc hoặc npm run build)
+- JS: không có type.
+- TS: có type.
 
-file.ts -> (tsc complie) -> file.js
-(type script) kiểm tra Typesciprt ->ko còn type và là js thuần 100%
-xóa hết type -> chỉ giữ JS THUẦN
-có : number
-có :string
+## TypeScript hoạt động như thế nào?
 
-B3. run time -> trình duyệt/node js chyaj fikle .js này
+TypeScript kiểm tra lỗi ở các thời điểm sau:
 
-typescript: bộ kiểm tra/.biên dịch typescript , cung caaps lệnh tsc
-tsx: công cụ giúp chạy trực tiếp file .ts trong node js ->r ất tiện khi học
+### Bước 1: Viết code trong IDE
 
+Ví dụ: VS Code.
+
+- TypeScript Language Server chạy ngầm trong IDE.
+- Gạch đỏ ngay khi mình gõ sai kiểu dữ liệu.
+- Gợi ý code.
+
+Đây chưa phải là lúc biên dịch. Đây chỉ là bước IDE kiểm tra code.
+
+### Bước 2: Biên dịch
+
+Chạy lệnh:
+
+- `tsc`
+- `npm run build`
+
+Quá trình biên dịch:
+
+```txt
+file.ts -> tsc compile -> file.js
+```
+
+Trong bước này:
+
+- TypeScript kiểm tra type.
+- Sau khi biên dịch, file `.js` không còn type.
+- File kết quả là JavaScript thuần 100%.
+- Các khai báo type như `: number`, `: string` sẽ bị xóa.
+- Chỉ giữ lại JavaScript thuần.
+
+### Bước 3: Runtime
+
+Trình duyệt hoặc Node.js chạy file `.js`.
+
+## Công cụ cần biết
+
+- `typescript`: bộ kiểm tra và biên dịch TypeScript, cung cấp lệnh `tsc`.
+- `tsx`: công cụ giúp chạy trực tiếp file `.ts` trong Node.js, rất tiện khi học.
+
+## Khởi tạo project
+
+```bash
 npm init -y
--> tạo file package.json.
+```
 
+Lệnh này tạo file `package.json`.
+
+Cài TypeScript và TSX:
+
+```bash
 npm install -D typescript tsx
+```
 
+Chạy trực tiếp file TypeScript:
+
+```bash
 npx tsx tenfile.ts
+```
 
-npx tsc tenfile.ts -> de tao ra file .js từ file ts
+Biên dịch file TypeScript sang JavaScript:
 
-tạo folder .vscode ở root
-settings.json
-lint()
+```bash
+npx tsc tenfile.ts
+```
+
+## Cấu hình Code Runner cho TypeScript
+
+Tạo folder `.vscode` ở root project.
+
+Tạo file `settings.json`:
+
+```json
 {
-"code-runner.runInTerminal": true,
-"code-runner.executorMap": {
-"typescript": "npx tsx"
+  "code-runner.runInTerminal": true,
+  "code-runner.executorMap": {
+    "typescript": "npx tsx"
+  }
 }
-}
+```
 
-//các kiểu dữ liệu cơ bản
-cú pháp
-let tenBien : kiểu dữ liệu = giá trị
+## Các kiểu dữ liệu cơ bản
 
-//type inference - typescript tư suy luận
+Cú pháp:
 
-union types - biến chứa nhiều kiểu
+```ts
+let tenBien: kieuDuLieu = giaTri;
+```
 
-khi 1 biến có thẻ mang nhiều kiểu dữ liệu khác nhau, dùng dấu | dấu sổ đứng (gạch đsung) -> (pipe)
+## Type inference
 
-//nói đơn giuản uinion type giúp bạn liệt kê trước các khả năng hợp lệ, để TS chặn giá trị sai ngay lúc viết code
-Union tyhpe đặc biệt hữ ích ở 3 nhóm
-GGiớihanj lựa chọn đầu vào: browser, environment, role, action
-Mô tả trạng thái test/api rõ ràng: pass/fail/skip
+Type inference là cơ chế TypeScript tự suy luận kiểu dữ liệu.
 
-trong function ta phải check kiểu dữ liệu để xử lý logic
+## Union types
 
-any/unknown
+Union type dùng khi một biến có thể mang nhiều kiểu dữ liệu khác nhau.
 
-Định kiểu cho mảng (array)
+Cú pháp dùng dấu `|`:
 
-cú pháp đơn giản
-string[] -> mảng chỉ chứa string
-number[] -> mảnh chỉ chứa number
-User[] -> mảnh chỉ chứa object đúng shape User
+```ts
+let value: string | number;
+```
 
+Nói đơn giản, union type giúp liệt kê trước các khả năng hợp lệ để TypeScript chặn giá trị sai ngay lúc viết code.
 
+Union type đặc biệt hữu ích trong các nhóm sau:
+
+- Giới hạn lựa chọn đầu vào:
+  - browser
+  - environment
+  - role
+  - action
+- Mô tả trạng thái test/API rõ ràng:
+  - pass
+  - fail
+  - skip
+
+Trong function, ta phải kiểm tra kiểu dữ liệu để xử lý logic phù hợp.
+
+## `any` và `unknown`
+
+- `any`: cho phép gán bất kỳ kiểu dữ liệu nào.
+- `unknown`: cũng nhận bất kỳ kiểu dữ liệu nào, nhưng bắt buộc phải kiểm tra kiểu trước khi sử dụng.
+
+## Định kiểu cho mảng
+
+Cú pháp đơn giản:
+
+- `string[]`: mảng chỉ chứa string.
+- `number[]`: mảng chỉ chứa number.
+- `User[]`: mảng chỉ chứa object đúng shape `User`.
